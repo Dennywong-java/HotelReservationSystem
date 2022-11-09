@@ -2,6 +2,7 @@ package com.hrs.hotelreservationsystem.pojo.requestbody;
 
 import lombok.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -17,5 +18,5 @@ public class ReserveRequest {
 
     private Integer partySize;
 
-
+    private Date arrivalTime;
 }

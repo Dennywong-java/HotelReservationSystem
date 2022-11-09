@@ -13,7 +13,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Queue {
+public class Queue implements Comparable<Queue> {
     @Id
     @Column(name = "queue_id")
     @JsonIgnore
@@ -25,6 +25,8 @@ public class Queue {
     private Integer userId;
     @Column(name = "reserve_time")
     private Date reserveTime;
+    @Column(name = "arrive_time")
+    private Date arriveTime;
     @Column(name = "party_size")
     private Integer partySize;
     @ManyToOne
@@ -35,4 +37,9 @@ public class Queue {
     @JoinColumn(name = "table_id",insertable = false, updatable = false)
     @JsonIgnore
     private com.hrs.hotelreservationsystem.pojo.Table table;
+
+    @Override
+    public int compareTo(Queue o) {
+        return this.getTableId() - o.getTableId();
+    }
 }

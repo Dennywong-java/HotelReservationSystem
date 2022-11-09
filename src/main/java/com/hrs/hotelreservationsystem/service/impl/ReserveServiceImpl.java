@@ -65,6 +65,7 @@ public class ReserveServiceImpl implements ReserveService {
             queue.setId(integer);
             queue.setTableId(t.getId());
             queue.setUserId(user.getId());
+            queue.setArriveTime(reserveRequest.getArrivalTime());
             queue.setPartySize(reserveRequest.getPartySize());
             queue.setReserveTime(new Date(System.currentTimeMillis()));
             queueSet.add(queue);
@@ -89,6 +90,7 @@ public class ReserveServiceImpl implements ReserveService {
         } else {
             Set<Queue> queueSet = queueRepository.findAllByTableIdIn(reserveRequest.getTableId());
             for (Queue q : queueSet) {
+                q.setArriveTime(reserveRequest.getArrivalTime());
                 q.setPartySize(reserveRequest.getPartySize());
                 q.setReserveTime(new Date(System.currentTimeMillis()));
             }
